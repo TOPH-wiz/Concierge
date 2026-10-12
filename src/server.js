@@ -15,6 +15,7 @@ origin: process.env.CORS_ORIGIN || "http://localhost:3000"
 })
 );
 app.use(express.json({ limit: "1mb" }));
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
 res.json({
@@ -63,3 +64,4 @@ path: req.path
 app.listen(PORT, "0.0.0.0", () => {
 console.log("Oqata API listening on port ${PORT}");
 });
+const authRoutes = require("./routes/auth");
