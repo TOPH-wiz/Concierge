@@ -4,6 +4,8 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const { checkDatabase } = require("./db");
+const authRoutes = require("./routes/auth");
+const taskRoutes = require("./routes/tasks");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,7 +17,9 @@ origin: process.env.CORS_ORIGIN || "http://localhost:3000"
 })
 );
 app.use(express.json({ limit: "1mb" }));
+
 app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
 app.get("/", (req, res) => {
 res.json({
@@ -64,6 +68,3 @@ path: req.path
 app.listen(PORT, "0.0.0.0", () => {
 console.log("Oqata API listening on port ${PORT}");
 });
-const authRoutes = require("./routes/auth");
-const taskRoutes = require("./routes/tasks");
-app.use("/api/tasks", taskRoutes);
