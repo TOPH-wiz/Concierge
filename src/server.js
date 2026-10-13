@@ -65,3 +65,5 @@ app.listen(PORT, "0.0.0.0", () => {
 console.log("Oqata API listening on port ${PORT}");
 });
 const authRoutes = require("./routes/auth");
+const taskRoutes = require("./routes/tasks");
+app.use("/api/tasks", taskRoutes);
